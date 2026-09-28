@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusPass - Student Portal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>BusPass</h1>
+    <nav>
+      <a href="index.html" class="active">Student Portal</a>
+      <a href="admin.html">Admin Portal</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Register -->
+    <section class="card">
+      <h2>1. Register as a student</h2>
+      <form id="registerForm" class="form-grid">
+        <label>Name
+          <input type="text" id="regName" required />
+        </label>
+        <label>Roll number
+          <input type="text" id="regRoll" required />
+        </label>
+        <label>Email
+          <input type="email" id="regEmail" required />
+        </label>
+        <label>Department
+          <input type="text" id="regDept" />
+        </label>
+        <button type="submit" class="btn">Register</button>
+      </form>
+      <p id="registerResult" class="note"></p>
+    </section>
+
+    <!-- Apply -->
+    <section class="card">
+      <h2>2. Apply for a bus pass</h2>
+      <form id="applyForm" class="form-grid">
+        <label>Student ID
+          <input type="number" id="applyStudentId" min="1" required />
+        </label>
+        <label>Route
+          <select id="applyRoute" required>
+            <option value="">Loading routes...</option>
+          </select>
+        </label>
+        <label>Boarding point
+          <select id="applyBoarding" required disabled>
+            <option value="">Select a route first</option>
+          </select>
+        </label>
+        <label>Photo reference
+          <input type="text" id="applyPhoto" placeholder="e.g. photos/asha.jpg" required />
+        </label>
+        <button type="submit" class="btn">Submit application</button>
+      </form>
+    </section>
+
+    <!-- Track -->
+    <section class="card">
+      <h2>3. Track your application</h2>
+
+      <form id="trackByIdForm" class="inline-form">
+        <input type="number" id="trackApplicationId" min="1" placeholder="Application ID" required />
+        <button type="submit" class="btn">Check status</button>
+      </form>
+
+      <form id="trackByStudentForm" class="inline-form">
+        <input type="number" id="trackStudentId" min="1" placeholder="Student ID" required />
+        <button type="submit" class="btn btn-secondary">View all my applications</button>
+      </form>
+
+      <div id="applicationResults" class="results"></div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/student.js"></script>
+</body>
+</html>

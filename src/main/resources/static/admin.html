@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusPass - Admin Portal</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>BusPass</h1>
+    <nav>
+      <a href="index.html">Student Portal</a>
+      <a href="admin.html" class="active">Admin Portal</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- Review application -->
+    <section class="card">
+      <h2>1. Approve / Reject an application</h2>
+      <form id="reviewForm" class="form-grid">
+        <label>Application ID
+          <input type="number" id="reviewId" min="1" required />
+        </label>
+        <label>Decision
+          <select id="reviewDecision" required>
+            <option value="APPROVE">Approve</option>
+            <option value="REJECT">Reject</option>
+          </select>
+        </label>
+        <label>Admin remark
+          <input type="text" id="reviewRemark" placeholder="Optional note" />
+        </label>
+        <label id="reasonWrap" class="hidden">Rejection reason (required)
+          <input type="text" id="reviewReason" />
+        </label>
+        <label id="monthsWrap">Validity (months)
+          <input type="number" id="reviewMonths" min="1" max="24" value="6" />
+        </label>
+        <button type="submit" class="btn">Submit review</button>
+      </form>
+      <div id="reviewResult" class="results"></div>
+    </section>
+
+    <!-- Expiring passes -->
+    <section class="card">
+      <h2>2. Passes expiring in the next 30 days</h2>
+      <button id="loadExpiring" class="btn">Load expiring passes</button>
+      <div id="expiringResults" class="results"></div>
+    </section>
+
+    <!-- Add route -->
+    <section class="card">
+      <h2>3. Add a bus route</h2>
+      <form id="routeForm" class="form-grid">
+        <label>Route code
+          <input type="text" id="routeCode" placeholder="e.g. R01" required />
+        </label>
+        <label>Route name
+          <input type="text" id="routeName" placeholder="e.g. City Centre Express" required />
+        </label>
+        <label>Start point
+          <input type="text" id="routeStart" required />
+        </label>
+        <label>End point
+          <input type="text" id="routeEnd" required />
+        </label>
+        <label class="full">Boarding points (comma-separated)
+          <input type="text" id="routeStops" placeholder="e.g. Stop A, Stop B, Stop C" required />
+        </label>
+        <button type="submit" class="btn">Add route</button>
+      </form>
+    </section>
+
+    <!-- Routes table -->
+    <section class="card">
+      <h2>4. All routes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Code</th><th>Name</th><th>Start</th><th>End</th><th>Boarding points</th>
+            </tr>
+          </thead>
+          <tbody id="routesBody">
+            <tr><td colspan="6" class="empty">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
